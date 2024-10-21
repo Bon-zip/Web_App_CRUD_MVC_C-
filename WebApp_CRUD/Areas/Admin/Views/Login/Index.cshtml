@@ -1,0 +1,146 @@
+﻿@model WebApp_CRUD.Data.User;
+@{
+    Layout = "";
+}
+<!DOCTYPE html>
+
+<html class="light-style layout-menu-fixed" data-theme="theme-default" data-assets-path="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template-free/demo/assets/" data-base-url="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template-free/demo" data-framework="laravel" data-template="vertical-menu-laravel-template-free">
+
+
+<!-- Mirrored from demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template-free/demo/auth/login-basic by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2023 14:12:20 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Login Pages</title>
+    <meta name="description" content="Most Powerful &amp; Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!" />
+    <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5, bootstrap 5 free, free admin template">
+    <!-- laravel CRUD token -->
+    <meta name="csrf-token" content="cqVG76r2yXPMJNn2LEO2wmYp1eT26UwwTROtoZKb">
+    <!-- Canonical SEO -->
+    <link rel="canonical" href="https://themeselection.com/item/sneat-bootstrap-html-laravel-admin-template/">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/admin/assets/img/favicon/favicon.ico" />
+
+    <!-- Include Styles -->
+    <!-- BEGIN: Theme CSS-->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/admin/assets/vendor/fonts/boxicons076f.css?id=b821a646ad0904f9218f56d8be8f070c" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="~/admin/assets/vendor/css/coredcac.css?id=7a74a9d0cfeabd283069bfaa3de33eaa" />
+    <link rel="stylesheet" href="~/admin/assets/vendor/css/theme-default6271.css?id=3d127db9612959fd1b1297d4adb3d55e" />
+    <link rel="stylesheet" href="~/admin/assets/css/demo6e6a.css?id=8a804dae81f41c0f9fcbef2fa8316bdd" />
+
+    <link rel="stylesheet" href="~/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbarc5ea.css?id=98fefe4424f0148a6e7c70b613511b33" />
+
+    <!-- Vendor Styles -->
+    <!-- Page Styles -->
+    <!-- Page -->
+    <link rel="stylesheet" href="~/admin/assets/vendor/css/pages/page-auth.css">
+
+    <!-- Include Scripts for customizer, helper, analytics, config -->
+    <!-- laravel style -->
+    <script src="~/admin/assets/vendor/js/helpers.js"></script>
+
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="~/admin/assets/js/config.js"></script>
+
+    <!-- beautify ignore:end -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+
+    </script>
+</head>
+
+<body>
+    <!-- Layout Content -->
+    <!-- Content -->
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner">
+                <!-- Login -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mb-2">Welcome to Sneat! 👋</h4>
+                        <p class="mb-4">Please sign in to your account and start the adventure</p>
+                        <form id="formAuthentication" class="mb-3" asp-area="Admin" asp-controller="Login" asp-action="Login" method="post">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Email or Username</label>
+                                <input type="text" asp-for="UserName" class="form-control" id="username" name="username" placeholder="Enter your email or username..." autofocus required>
+                                <span class="text-danger text-small" asp-validation-for="UserName"></span>
+                            </div>
+                            <div class="input-group input-group-merge mb-3">
+                                <input type="password" id="password" asp-for="Password" class="form-control" name="password" placeholder="Password..." aria-describedby="password" required />
+                                <span class="input-group-text cursor-pointer" id="togglePassword"><i class="bx bx-hide"></i></span>
+                                <span class="text-danger text-small" asp-validation-for="Password"></span>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                            </div>
+                        </form>
+
+                        <p class="text-center">
+                            <span>New on our platform?</span>
+                            <a asp-action="Register" asp-controller="Account">
+                                <span>Create an account</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- /Login -->
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('bx-hide');
+            this.querySelector('i').classList.toggle('bx-show');
+        });
+    </script>
+
+    <!--/ Content -->
+    <!--/ Layout Content -->
+    <!-- Include Scripts -->
+    <!-- BEGIN: Vendor JS-->
+    <script src="~/admin/assets/vendor/libs/jquery/jquery0bfa.js?id=c9eab148c98f81221c99ba6da84fdbe2"></script>
+    <script src="~/admin/assets/vendor/libs/popper/popper3939.js?id=3b2f93fa0eb2f0ed310a789319de72fc"></script>
+    <script src="~/admin/assets/vendor/js/bootstrap1425.js?id=f4406bcd0acdeffbdcca24c2e1033ae6"></script>
+    <script src="~/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar7d0f.js?id=2f948c841c6aca9e3a18f6ef2c65b140"></script>
+    <script src="~/admin/assets/vendor/js/menu68ea.js?id=3421096250c82e0d3760f641a4d2dba0"></script>
+    <!-- END: Page Vendor JS-->
+    <!-- BEGIN: Theme JS-->
+    <script src="~/admin/assets/js/main84ce.js?id=0c91cceb5195b308a36d5ac021b16464"></script>
+
+    <!-- END: Theme JS-->
+    <!-- Pricing Modal JS-->
+    <!-- END: Pricing Modal JS-->
+    <!-- BEGIN: Page JS-->
+    <!-- END: Page JS-->
+
+</body>
+
+
+<!-- Mirrored from demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template-free/demo/auth/login-basic by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Sep 2023 14:12:21 GMT -->
+</html>

@@ -1,0 +1,70 @@
+﻿@model WebApp_CRUD.Data.Blog
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Basic Layout</h5> <small class="text-muted float-end">Default label</small>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <!-- Trường Name -->
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Name</label>
+                        <input type="text" asp-for="Name" class="form-control" id="Name" placeholder="Blog Name" oninput="ChangeToSlug()" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label" for="basic-default-company">Description</label>
+                        <textarea asp-for="Description" class="form-control" placeholder="Nhập nội dung..." rows="4"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Slug" class="form-label">Slug</label>
+                        <input type="text" asp-for="Slug" class="form-control" id="BlSlug" placeholder="Slug" readonly />
+                        <span asp-validation-for="Slug" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Images">Upload Image</label>
+                        <input type="file" name="fileUpload" class="form-control" placeholder="Images....." />
+                    </div>
+                    <button type="submit" value="Create" class="btn btn-primary">Add</button>
+                    <a asp-action="Index" class="btn btn-danger">Trở lại</a>
+                </form>
+            </div>
+        </div>
+       
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        CKEDITOR.replace('@Html.IdFor(m => m.Description)');
+    </script>
+    <script>
+        function ChangeToSlug() {
+            var name = document.getElementById("Name").value;
+
+            // Chuyển đổi tên thành dạng không dấu và tạo slug
+            var slug = name.toLowerCase()
+                .normalize('NFD') // Chuẩn hóa Unicode để tách dấu khỏi chữ cái
+                .replace(/[\u0300-\u036f]/g, '') // Loại bỏ các dấu Unicode
+                .replace(/[đĐ]/g, 'd') // Thay thế chữ đ thành d
+                .replace(/\s+/g, '-') // Thay khoảng trắng bằng dấu gạch ngang
+                .replace(/[^a-z0-9-]/g, '') // Loại bỏ ký tự không phải chữ cái, số hoặc dấu gạch ngang
+                .replace(/-+/g, '-') // Loại bỏ nhiều dấu gạch ngang liên tiếp
+                .trim('-'); // Loại bỏ dấu gạch ngang ở đầu và cuối (nếu có)
+
+            // Cập nhật giá trị slug vào trường
+            document.getElementById("BlSlug").value = slug;
+        }
+    </script>
+}

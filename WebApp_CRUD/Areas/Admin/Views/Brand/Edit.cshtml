@@ -1,0 +1,82 @@
+﻿@model WebApp_CRUD.Data.Brand
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Create Brand</h5> <small class="text-muted float-end"></small>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Images">Tải lên Hình Ảnh</label>
+                        <input type="file" name="fileUpload" class="form-control" />
+                    </div>
+                    <img src="~/Uploads/brands/@Model.Images" alt="Alternate Text" class="card-img w-100" style="width: 100px !important;" />
+                    <!-- Trường Name -->
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Name</label>
+                        <input type="text" asp-for="Name" class="form-control" id="Name" placeholder="Brand Name" oninput="ChangeToSlug()" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label" for="basic-default-company">Description</label>
+                        <textarea asp-for="Description" class="form-control" placeholder="Nhập nội dung..." rows="4"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <!-- Trường Slug (tự động) -->
+                    <div class="mb-3">
+                        <label asp-for="Slug" class="form-label">Slug</label>
+                        <input type="text" asp-for="Slug" class="form-control" id="BSlug" placeholder="Slug" readonly />
+                        <span asp-validation-for="Slug" class="text-danger"></span>
+                    </div>
+                    <div class="form-check form-check-inline mb-3">
+                        <input class="form-check-input" asp-for="Status" type="radio" id="inlineRadio1" value="1" />
+                        <label class="form-check-label" for="inlineRadio1">Active</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-3">
+                        <input class="form-check-input" asp-for="Status" type="radio" id="inlineRadio2" value="0" />
+                        <label class="form-check-label" for="inlineRadio2">Inactive</label>
+                    </div>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                    <br />
+                    <button type="submit" value="Edit" class="btn btn-primary">Gửi</button>
+                    <a asp-action="Index" class="btn btn-danger">Trở lại</a>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        CKEDITOR.replace('@Html.IdFor(m => m.Description)');
+    </script>
+    <script>
+        function ChangeToSlug() {
+            var name = document.getElementById("Name").value;
+
+            // Chuyển đổi tên thành dạng không dấu và tạo slug
+            var slug = name.toLowerCase()
+                .normalize('NFD') // Chuẩn hóa Unicode để tách dấu khỏi chữ cái
+                .replace(/[\u0300-\u036f]/g, '') // Loại bỏ các dấu Unicode
+                .replace(/[đĐ]/g, 'd') // Thay thế chữ đ thành d
+                .replace(/\s+/g, '-') // Thay khoảng trắng bằng dấu gạch ngang
+                .replace(/[^a-z0-9-]/g, '') // Loại bỏ ký tự không phải chữ cái, số hoặc dấu gạch ngang
+                .replace(/-+/g, '-') // Loại bỏ nhiều dấu gạch ngang liên tiếp
+                .trim('-'); // Loại bỏ dấu gạch ngang ở đầu và cuối (nếu có)
+
+            // Cập nhật giá trị slug vào trường
+            document.getElementById("PSlug").value = slug;
+        }
+    </script>
+}

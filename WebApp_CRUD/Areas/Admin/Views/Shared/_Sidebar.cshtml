@@ -1,0 +1,49 @@
+﻿<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <!-- ! Hide app brand if navbar-full -->
+    <div class="app-brand demo">
+        <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bold ms-2">Admin Web App</span>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-autod-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+    <div class="menu-inner-shadow"></div>
+    <ul class="menu-inner py-1">
+        <li class="menu-item open">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div>DashBoard</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item ">
+                    <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="menu-link">
+                        <div>Category</div>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="menu-link">
+                        <div>Product</div>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a asp-area="Admin" asp-controller="Blog" asp-action="Index" class="menu-link">
+                        <div>Blog</div>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a asp-area="Admin" asp-controller="Brand" asp-action="Index" class="menu-link">
+                        <div>Brand</div>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a asp-area="Admin" asp-controller="User" asp-action="Index" class="menu-link">
+                        <div>Account</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</aside>

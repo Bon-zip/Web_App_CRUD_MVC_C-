@@ -1,0 +1,88 @@
+﻿@model WebApp_CRUD.Models.ViewModels.RegisterViewModel
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Home</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Register</a></li>
+    </ol>
+</div>
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <h1 class="mb-4 text-center">Register</h1>
+        <form asp-area="" asp-action="Register" enctype="multipart/form-data" method="post">
+            <div class="row g-5">
+                <div class="col-md-12 col-lg-6 col-xl-7 container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label asp-for="@Model.FirstName" class="form-label my-3">First Name<sup>*</sup></label>
+                                <input asp-for="@Model.FirstName" type="text" class="form-control" placeholder="Firt Name....">
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label asp-for="@Model.LastName" class="form-label my-3">Last Name<sup>*</sup></label>
+                                <input asp-for="@Model.LastName" type="text" class="form-control" placeholder="Last Name....">
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <label asp-for="@Model.UserName" class="form-label my-3">UserName<sup>*</sup></label>
+                        <input asp-for="@Model.UserName" type="text" class="form-control" placeholder="UserName....">
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-item">
+                        <label asp-for="@Model.Password" class="form-label my-3">Password <sup>*</sup></label>
+                        <input asp-for="@Model.Password" type="password" class="form-control" placeholder="Password....">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-item">
+                        <label asp-for="@Model.UserAddress" class="form-label my-3">Address <sup>*</sup></label>
+                        <input asp-for="@Model.UserAddress" type="text" class="form-control" placeholder="Address....">
+                        <span asp-validation-for="UserAddress" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-item">
+                        <label asp-for="@Model.UserPhone" class="form-label my-3">Phone<sup>*</sup></label>
+                        <input asp-for="@Model.UserPhone" type="number" class="form-control" placeholder="Phone....">
+                        <span asp-validation-for="UserPhone" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-item">
+                        <label asp-for="@Model.Avatar" class="form-label my-3">Avatar<sup>*</sup></label>
+                        <input asp-for="@Model.Avatar" name="Avatar" type="file" class="form-control" placeholder="Avatar....">
+                        <span asp-validation-for="Avatar" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-item m-2">
+                        <label asp-for="@Model.Gender" class="form-label my-3">Gender : </label>
+                        <div class="form-check form-check-inline mb-3">
+                            <input class="form-check-input" asp-for="Gender" type="radio" id="inlineRadio1" value="1" checked />
+                            <label class="form-check-label" for="inlineRadio1">Nam</label>
+                        </div>
+                        <div class="form-check form-check-inline mb-3">
+                            <input class="form-check-input" asp-for="Gender" type="radio" id="inlineRadio2" value="0" />
+                            <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                        </div>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                    <div class="form-item justify-content-center m-3">
+                        <button type="submit" class="btn btn-primary" style=" margin-top: 30px; margin-bottom: 50px;margin-right: 100px;margin-left: 290px; width:300px">
+                            Singup
+                        </button>
+                        <p class="mb-0">
+                            Bạn đã có tài khoản !! <a asp-area="" asp-action="Login" asp-controller="Home" class="text-black-100 fw-bold">Login</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

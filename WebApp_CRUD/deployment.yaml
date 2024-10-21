@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  shopapp-container:
+    container_name: shopapp-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8090:8080
+    networks:
+      - shopapp-network
+
+
+networks:
+  shopapp-network:
+    name: shopapp-network
+    driver: bridge
+    external: true
+# docker-compose -f ./deployment.yaml down
+
+# tạo image docker backend
+# docker-compose -f ./deployment.yaml rm -s -f shopapp-spring-container
+# docker-compose -f ./deployment.yaml up -d shopapp-spring-container
